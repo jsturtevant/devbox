@@ -7,33 +7,13 @@
 
 ## Windows tools
 
-* [7zip](http://www.7-zip.org/)
-* [Azure Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/)
-* [Docker for Windows](https://store.docker.com/editions/community/docker-ce-desktop-windows)
-* [Fiddler](https://www.telerik.com/fiddler)
-* [GitExtensions](https://gitextensions.github.io/)
-* [Google Chrome](https://www.google.com/chrome/)
-* [Postman](https://www.getpostman.com/)
-* [Sysinternals](https://docs.microsoft.com/en-us/sysinternals/downloads/sysinternals-suite)
-* [Visual Studio Code](https://code.visualstudio.com)
-* [Visual Studio IDE](https://www.visualstudio.com/vs/)
+Use Chocolately and scripts here: https://github.com/jsturtevant/chocolatey-recipe
 
 ## System configuration
 
 ### Console aliases
 
-I use a few aliases for the Windows Command Prompt to make things a little nicer when I have to use it
-
-```shell
-reg import cmdrc.cmd
-```
-
-### Windows Defender
-
-Exclusions
-
-* `C:\code`
-* `C:\Users\noelb\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc`
+Use `choco install git -params '"/GitAndUnixToolsOnPath"'` from chocolately and it will install all the *nix commands like `ls`, `touch`, `grep`, etc
 
 ### Windows Subsystem for Linux
 

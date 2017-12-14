@@ -13,11 +13,10 @@ if grep -q Microsoft /proc/sys/kernel/osrelease; then
   alias docker='docker.exe'
   alias docker-compose='docker-compose.exe'
   
-
   # I should blog more often  
   function blog() {
     if type code > /dev/null; then 
-      pushd ~/code/noelbundick-hexo
+      pushd ~/projects/jsturtevant.github.io
       code . </dev/null &>/dev/null & disown
       popd
     fi
@@ -27,10 +26,5 @@ if grep -q Microsoft /proc/sys/kernel/osrelease; then
   unsetopt BG_NICE
 
   # Map folders on C: to my home folder
-  ln -sfn /mnt/c/code ~/code
-  ln -sfn /mnt/c/temp ~/temp
-
-  # On WSL, I want to connect to the daemon running on Windows
-  # TODO: Look into Windows named pipes from WSL instead of TCP (https://github.com/jstarks/npiperelay)
-
+  ln -sfn /mnt/c/projects ~/projects
 fi

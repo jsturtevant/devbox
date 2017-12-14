@@ -5,14 +5,7 @@
   tasks:
     - name: Administrative setup actions
       become: true
-      block:
-        - name: Add Yarn key
-          apt_key:
-            url: https://dl.yarnpkg.com/debian/pubkey.gpg
-        - name: Add Yarn repository
-          apt_repository:
-            repo: 'deb https://dl.yarnpkg.com/debian/ stable main'
-
+      block: 
         - name: Add Azure CLI key
           apt_key:
             id: 417A0893
@@ -32,13 +25,6 @@
             - deb https://deb.nodesource.com/node_8.x xenial main
             - deb-src https://deb.nodesource.com/node_8.x xenial main
 
-        - name: Add Docker key
-          apt_key:
-            url: https://download.docker.com/linux/ubuntu/gpg
-        - name: Add Docker to sources list
-          apt_repository:
-            repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
-
         - name: Add neofetch repository
           apt_repository:
             repo: ppa:dawidd0811/neofetch
@@ -57,10 +43,8 @@
             - curl
             - software-properties-common
             - jq
-            - yarn
             - azure-cli
             - nodejs
-            - docker-ce
             - git
             - zsh
             - neofetch
@@ -111,27 +95,6 @@
                 force: no
                 mode: 0755
 
-        - name: Install acs-engine
-          block:
-            - name: Create staging directory for acs-engine
-              file:
-                path: /usr/local/src/acs-engine
-                state: directory
-            - name: Extract acs-engine
-              unarchive:
-                src: https://github.com/Azure/acs-engine/releases/download/v0.9.3/acs-engine-v0.9.3-linux-amd64.tar.gz
-                dest: /usr/local/src/acs-engine
-                remote_src: yes
-                creates: /usr/local/src/acs-engine/acs-engine
-                extra_opts: ['--strip-components=1']
-            - name: Copy acs-engine to /usr/local/bin
-              copy:
-                src: /usr/local/src/acs-engine/acs-engine
-                dest: /usr/local/bin/acs-engine
-                remote_src: yes
-                force: no
-                mode: 0755
-
         - name: Install sfctl
           pip:
             name: sfctl
@@ -149,7 +112,7 @@
 
         - name: Set Zsh as the default shell
           user:
-            name: noel
+            name: jsturtevant
             shell: /bin/zsh
             append: yes
             groups:
@@ -162,15 +125,15 @@
 
     - name: Set up devbox repo
       block:
-        - name: Clone noelbundick/devbox
+        - name: Clone jsturtevant/devbox
           when: devbox_dev is undefined
           git:
-            repo: https://github.com/noelbundick/devbox
+            repo: https://github.com/jsturtevant/devbox
             dest: ~/.devbox
         - name: Use ssh when pushing changes to origin
           shell: |
             if ! git remote -v | grep -q git@github.com; then
-              git remote set-url --push origin git@github.com:noelbundick/devbox.git
+              git remote set-url --push origin git@github.com:jsturtevant/devbox.git
             fi
           changed_when: false
           args:
@@ -225,6 +188,6 @@
       file:
         dest: ~/
         state: directory
-        owner: noel
-        group: noel
+        owner: jsturtevant
+        group: jsturtevant
         recurse: yes

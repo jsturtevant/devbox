@@ -121,7 +121,7 @@
 
         - name: Set Zsh as the default shell
           user:
-            name: jsturtevant
+            name: jstur
             shell: /bin/zsh
             append: yes
 
@@ -195,6 +195,6 @@
       file:
         dest: ~/
         state: directory
-        owner: jsturtevant
-        group: jsturtevant
+        owner: jstur
+        group: jstur
         recurse: yes

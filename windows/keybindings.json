@@ -1,0 +1,23 @@
+// Place your key bindings in this file to overwrite the defaults
+// lives at AppData/Roaming/Code/User/keybindings.json
+[
+    {
+        "key": "ctrl+shift+t",
+        "command": "workbench.action.tasks.runTask",
+        "args": "test"
+    },
+    {
+        "key": "ctrl+shift+r",
+        "command": "workbench.action.tasks.runTask",
+        "args": "restore"
+    },
+    {
+        "key": "ctrl+alt+down",
+        "command": "workbench.action.terminal.focus"
+    },
+    {
+        "key": "ctrl+r ctrl+r",
+        "command": "editor.action.rename",
+        "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+    }
+]

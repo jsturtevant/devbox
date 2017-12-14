@@ -1,27 +1,26 @@
 # Aliases
 alias ccat="pygmentize -g"
-alias d="docker"
 alias devbox-update="sudo ansible-playbook ~/.devbox/linux/devenv-playbook.yml"
 alias devbox-update-dev="sudo ansible-playbook -e devbox_dev=true ~/.devbox/linux/devenv-playbook.yml"
-alias devrc="vi ~/.devbox/linux/devenv-playbook.yml"
+alias edev="vi ~/.devbox/linux/devenv-playbook.yml"
 alias k="kubectl"
-alias tmuxrc="vim ~/.tmux.conf"
-alias vimrc="vim ~/.vimrc"
-alias zshrc="vim ~/.zshrc"
+alias etmux="vim ~/.tmux.conf"
+alias evim="vim ~/.vimrc"
+alias ezsh="vim ~/.zshrc"
 
-# Remove all Docker containers
-function dnuke() {
-  if read -q '?Are you sure (y/N)?'; then
-    echo # empty line
-    docker rm --force $(docker ps -aq)
-  fi
-  echo # empty line
-}
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 
 # SSH agent with default key
 function ssa() {
   eval $(ssh-agent -s)
   ssh-add ~/.ssh/id_rsa
+}
+
+# check given vs calculated
+function checksum {
+        echo "$1 $2" | sha256sum -c
 }
 
 # mimic armclient (https://github.com/projectkudu/ARMClient)

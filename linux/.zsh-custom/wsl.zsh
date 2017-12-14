@@ -4,9 +4,15 @@
 if grep -q Microsoft /proc/sys/kernel/osrelease; then
 
   # Aliases
-  alias dswitch="/mnt/c/Program \ Files/Docker/Docker/DockerCli.exe -SwitchDaemon"
-  alias explorer="explorer.exe"
-  alias minecraft-server="docker run -d --rm -p 25565:25565 -p 25575:25575 -e EULA=TRUE -e ONLINE_MODE=FALSE -v 'C:\\temp\\minecraftdata':/data itzg/minecraft-server"
+  alias e.="explorer.exe"
+  alias projects='cd /mnt/c/projects/'
+  
+  # docker from wsl
+  export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+  export PATH="$PATH:/mnt/c/Program\ Files/Docker/Docker/resources/bin"
+  alias docker='docker.exe'
+  alias docker-compose='docker-compose.exe'
+  
 
   # I should blog more often  
   function blog() {
@@ -26,6 +32,5 @@ if grep -q Microsoft /proc/sys/kernel/osrelease; then
 
   # On WSL, I want to connect to the daemon running on Windows
   # TODO: Look into Windows named pipes from WSL instead of TCP (https://github.com/jstarks/npiperelay)
-  export DOCKER_HOST=tcp://127.0.0.1:2375
 
 fi

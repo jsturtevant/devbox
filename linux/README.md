@@ -3,5 +3,5 @@
 ## Quick setup
 
 ```bash
-curl https://raw.githubusercontent.com/noelbundick/devbox/master/linux/init.sh | sudo bash
+curl https://raw.githubusercontent.com/jsturtevant/devbox/master/linux/init.sh | sudo bash
 ```

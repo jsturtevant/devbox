@@ -25,3 +25,11 @@ Use `choco install git -params '"/GitAndUnixToolsOnPath"'` from chocolately and 
 * `Win+Tab` - Show all windows, manage virtual desktops
 * `Ctrl+Win+Left/Right` - Switch virtual desktops
 * `Win+Arrow keys` - Snap windows
+
+## VS Code Extensions
+
+* Code Spell Checker
+* gitignore
+* go
+* markdown all in one
+* vscode-helm

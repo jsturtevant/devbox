@@ -2,6 +2,7 @@
 {
     "git.confirmSync": false,
     "editor.tabSize": 2,
+    "window.zoomLevel": 2,
     "extensions.ignoreRecommendations": false,
     "terminal.integrated.shell.windows": "C:\\Users\\jstur\\AppData\\Local\\Microsoft\\WindowsApps\\ubuntu.exe",
     "explorer.confirmDragAndDrop": false,

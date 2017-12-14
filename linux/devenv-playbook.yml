@@ -13,6 +13,9 @@
         - name: Add Azure CLI to sources list
           apt_repository:
             repo: deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ wheezy main
+        - name: Add .net to sources list
+          apt_repository:
+            repo: deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod xenial main
 
         - name: Add Node key
           apt_key:
@@ -53,6 +56,7 @@
             - tmux
             - vim
             - python-pygments
+            - dotnet-sdk-2.0.2
 
         - name: Upgrade all packages
           apt:

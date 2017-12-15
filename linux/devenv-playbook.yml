@@ -62,6 +62,7 @@
             - vim
             - python-pygments
             - dotnet-sdk-2.0.2
+            - cmake
 
         - name: Upgrade all packages
           apt:

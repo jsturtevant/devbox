@@ -62,6 +62,7 @@
             - vim
             - python-pygments
             - dotnet-sdk-2.0.2
+            - cmake
 
         - name: Upgrade all packages
           apt:
@@ -121,7 +122,7 @@
 
         - name: Set Zsh as the default shell
           user:
-            name: jsturtevant
+            name: jstur
             shell: /bin/zsh
             append: yes
 
@@ -195,6 +196,6 @@
       file:
         dest: ~/
         state: directory
-        owner: jsturtevant
-        group: jsturtevant
+        owner: jstur
+        group: jstur
         recurse: yes

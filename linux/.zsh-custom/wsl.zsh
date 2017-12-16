@@ -6,6 +6,7 @@ if grep -q Microsoft /proc/sys/kernel/osrelease; then
   # Aliases
   alias e.="explorer.exe"
   alias projects='cd /mnt/c/projects/'
+  alias blog='cd /mnt/c/projects/jsturtevant.github.io'
   
   # docker from wsl
   export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
@@ -13,15 +14,12 @@ if grep -q Microsoft /proc/sys/kernel/osrelease; then
   alias docker='docker.exe'
   alias docker-compose='docker-compose.exe'
   
-  # I should blog more often  
-  function blog() {
+  function code() {
     if type code > /dev/null; then 
-      pushd ~/projects/jsturtevant.github.io
       code . </dev/null &>/dev/null & disown
-      popd
     fi
-  } >/dev/null
-
+  } 
+ 
   # Don't 'nice' background jobs (https://github.com/Microsoft/BashOnWindows/issues/1838)
   unsetopt BG_NICE
 

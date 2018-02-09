@@ -61,8 +61,10 @@
             - tmux
             - vim
             - python-pygments
-            - dotnet-sdk-2.0.2
             - cmake
+            - zip
+            - unzip
+            - dotnet-sdk-2.1.4
 
         - name: Upgrade all packages
           apt:

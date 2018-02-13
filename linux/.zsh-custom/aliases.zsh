@@ -16,6 +16,7 @@ alias l='ls -CF'
 function ssa() {
   eval $(ssh-agent -s)
   ssh-add ~/.ssh/id_rsa
+  ssh-add ~/.ssh/idgithub_rsa
 }
 
 # check given vs calculated

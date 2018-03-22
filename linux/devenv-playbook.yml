@@ -158,7 +158,7 @@
                 force: no
                 mode: 0755
         
-         - name: Install acs-engine
+        - name: Install acs-engine
           block:
             - name: Create staging directory for acs-engine
               file:

@@ -4,6 +4,9 @@ Welcome to Noel's devbox repo! I use this repo to set up new development environ
 
 Some of this is cobbled together, but I try to keep parts of it reasonably tidy so I can remember how to do things, and so that others can learn from my (mis)adventures
 
+## Setup
+Run `init.sh` and if on WSL `Setup-Console.ps1` to get fonts.
+
 ## Linux
 
 All Linux-specific configuration (including Windows Subsystem for Linux) can be found under the `/linux` folder
@@ -23,6 +26,7 @@ I'm currently running Zsh + oh-my-zsh, and this folder contains all of my aliase
 ### WSL
 
 I have some specific quirks for WSL in `.zsh-custom/wsl.zsh` and `devenv-playbook-wsl`
+
 
 ## Windows
 

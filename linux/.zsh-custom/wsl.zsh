@@ -26,4 +26,7 @@ if grep -q Microsoft /proc/sys/kernel/osrelease; then
   # Map folders on C: to my home folder
   ln -sfn /mnt/c/projects ~/projects
   ln -sfn /mnt/c/Users/jstur/go ~/go
+
+  # copy the wsl config if doesn't exist.  need to reboot after first copy to apply changes
+  cp -n ~/.devbox/linux/wsl.conf /etc/
 fi

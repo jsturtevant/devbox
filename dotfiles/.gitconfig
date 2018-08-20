@@ -5,6 +5,7 @@
 	st = status
 	unstage = reset HEAD --
 	last = log -1 HEAD
+  tree = git log --all --decorate --oneline --graph
 [user]
 	name = James Sturtevant
 	email = jsturtevant@gmail.com

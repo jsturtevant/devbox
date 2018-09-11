@@ -76,14 +76,14 @@
 
         - name: Download & extract Go
           unarchive:
-            src: https://storage.googleapis.com/golang/go1.10.linux-amd64.tar.gz
+            src: https://storage.googleapis.com/golang/go1.11.linux-amd64.tar.gz
             dest: /usr/local
             remote_src: yes
             creates: /usr/local/go/bin/go
 
         - name: Download dep (for Go dependencies)
           get_url:
-            url: https://github.com/golang/dep/releases/download/v0.4.1/dep-linux-amd64
+            url: https://github.com/golang/dep/releases/download/v0.5.0/dep-linux-amd64
             dest: /usr/local/bin/dep
             mode: 0755
 
@@ -95,7 +95,7 @@
                 state: directory
             - name: Download and extract kubectl
               unarchive:
-                src: https://dl.k8s.io/v1.9.6/kubernetes-client-linux-amd64.tar.gz
+                src: https://dl.k8s.io/v1.11.2/kubernetes-client-linux-amd64.tar.gz
                 dest: /usr/local/src/kubectl
                 remote_src: yes
                 creates: /usr/local/src/kubectl/kubernetes/client/bin/kubectl
@@ -115,7 +115,7 @@
                 state: directory
             - name: Download and extract kubectx
               unarchive:
-                src: https://github.com/ahmetb/kubectx/archive/v0.4.0.tar.gz
+                src: https://github.com/ahmetb/kubectx/archive/v0.6.1.tar.gz
                 dest: /usr/local/src/kubectx
                 remote_src: yes
                 extra_opts: ['--strip-components=1']
@@ -146,7 +146,7 @@
                 state: directory
             - name: Download and extract Helm
               unarchive:
-                src: https://storage.googleapis.com/kubernetes-helm/helm-v2.8.1-linux-amd64.tar.gz
+                src: https://storage.googleapis.com/kubernetes-helm/helm-v2.10.0-linux-amd64.tar.gz
                 dest: /usr/local/src/helm
                 remote_src: yes
                 creates: /usr/local/src/helm/linux-amd64/helm
@@ -166,7 +166,7 @@
                 state: directory
             - name: Extract acs-engine
               unarchive:
-                src: https://github.com/Azure/acs-engine/releases/download/v0.13.1/acs-engine-v0.13.1-linux-amd64.tar.gz
+                src: https://github.com/Azure/acs-engine/releases/download/v0.21.2/acs-engine-v0.21.2-linux-amd64.tar.gz
                 dest: /usr/local/src/acs-engine
                 remote_src: yes
                 extra_opts: ['--strip-components=1']

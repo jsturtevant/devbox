@@ -64,7 +64,7 @@
             - cmake
             - zip
             - unzip
-            - dotnet-sdk-2.1.4
+            - fonts-powerline
 
         - name: Upgrade all packages
           apt:

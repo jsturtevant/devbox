@@ -9,6 +9,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 " reminder - call :PlugInstall to install plugins!
@@ -50,6 +51,9 @@ set splitright          " open new :vsp/:vsplit panes to the right
 inoremap {<CR> {<CR>}<Esc>ko
 inoremap [<CR> [<CR>]<Esc>ko
 inoremap (<CR> (<CR>)<Esc>ko
+
+" automatically rebalance windows on vim resize
+autocmd VimResized * :wincmd =
 
 " --- altercation/vim-colors/solarized ---
 colorscheme solarized   " use solarized color scheme

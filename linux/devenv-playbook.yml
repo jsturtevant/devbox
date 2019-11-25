@@ -8,8 +8,7 @@
       block: 
         - name: Add Azure CLI key
           apt_key:
-            id: 417A0893
-            keyserver: packages.microsoft.com
+            url: https://packages.microsoft.com/keys/microsoft.asc
         - name: Add Azure CLI to sources list
           apt_repository:
             repo: deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ bionic main

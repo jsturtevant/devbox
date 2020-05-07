@@ -272,6 +272,15 @@
         dest: '~/{{item}}'
       with_items:
         - .gitconfig
+          
+    - name: Link kubie config
+      file:
+        state: link
+        src: '~/.devbox/dotfiles/{{item}}'
+        dest: '~/.kube/{{item}}'
+      with_items:
+        - kubie.yaml
+
 
     - name: Link Linux-specific dotfiles
       file:

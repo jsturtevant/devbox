@@ -9,10 +9,10 @@
         - name: Add Azure CLI key
           apt_key:
             url: https://packages.microsoft.com/keys/microsoft.asc
-        - name: Add Azure CLI to sources list
-          apt_repository:
-            repo: deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_facts['lsb']['codename'] }} main
-            update_cache: no
+            #   - name: Add Azure CLI to sources list
+            #     apt_repository:
+            #       repo: deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_facts['lsb']['codename'] }} main
+            #       update_cache: no
         - name: add .netcore key
           apt_key:
             url: https://packages.microsoft.com/keys/microsoft.asc
@@ -50,7 +50,7 @@
             - curl
             - software-properties-common
             - jq
-            - azure-cli
+              #- azure-cli
             - nodejs
             - git
             - zsh
@@ -167,6 +167,30 @@
                 remote_src: yes
                 force: no
                 mode: 0755
+
+        - name: Install kubie
+          block:
+            - name: Create staging directory for kubie
+              file:
+                path: /usr/local/src/kubie
+                state: directory
+            - name: Download and extract kubie
+              get_url:
+                url: https://github.com/sbstp/kubie/releases/download/v0.9.0/kubie-linux-amd64
+                dest: /usr/local/src/kubie
+                remote_src: yes
+            - name: Copy kind to /usr/local/bin
+              copy:
+                src: /usr/local/src/kubie/kubie-linux-amd64
+                dest: /usr/local/bin/kubie
+                remote_src: yes
+                force: no
+                mode: 0755
+            - name: Download and extract kubie
+              get_url:
+                url: https://raw.githubusercontent.com/sbstp/kubie/master/completion/kubie.bash 
+                dest: /usr/local/src/kubie
+                remote_src: yes
                 
         - name: Install kustomize
           block:

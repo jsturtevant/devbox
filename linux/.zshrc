@@ -103,3 +103,4 @@ eval `dircolors ~/.dircolors`
 # Autocompletion
 source <(kubectl completion zsh)
 source /opt/az/bin/az.completion.sh &>/dev/null
+source /usr/local/src/kubie/kubie.bash

@@ -63,6 +63,7 @@
             - zip
             - unzip
             - fonts-powerline
+            - docker.io
 
         - name: Upgrade all packages
           apt:

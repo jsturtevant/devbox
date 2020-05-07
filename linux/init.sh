@@ -8,5 +8,5 @@ sudo apt install -y ansible
 sudo echo "localhost ansible_connection=local" > /etc/ansible/hosts
 
 curl -O https://raw.githubusercontent.com/jsturtevant/devbox/master/linux/devenv-playbook.yml
-sudo ansible-playbook devenv-playbook.yml
+ansible-playbook devenv-playbook.yml
 rm devenv-playbook.yml

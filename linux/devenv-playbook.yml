@@ -11,16 +11,16 @@
             url: https://packages.microsoft.com/keys/microsoft.asc
         - name: Add Azure CLI to sources list
           apt_repository:
-            repo: deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ bionic main
-
+            repo: deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_facts['lsb']['codename'] }} main
+            update_cache: no
         - name: add .netcore key
           apt_key:
             url: https://packages.microsoft.com/keys/microsoft.asc
             state: present
         - name: Add .net to sources list
           apt_repository:
-            repo: deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-bionic-prod bionic main
-
+            repo: deb [arch=amd64] https://packages.microsoft.com/ubuntu/{{ ansible_facts['lsb']['release'] }}/prod {{ ansible_facts['lsb']['codename'] }} main
+            update_cache: no
         - name: Add Node key
           apt_key:
             url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
@@ -28,14 +28,14 @@
           apt_repository:
             repo: '{{item}}'
             filename: nodesource
+            update_cache: no
           with_items:
-            - deb https://deb.nodesource.com/node_12.x bionic main
-            - deb-src https://deb.nodesource.com/node_12.x bionic main
-
+            - deb https://deb.nodesource.com/node_12.x {{ ansible_facts['lsb']['codename'] }} main
+            - deb-src https://deb.nodesource.com/node_12.x {{ ansible_facts['lsb']['codename'] }} main
         - name: Add neofetch repository
           apt_repository:
             repo: ppa:dawidd0811/neofetch
-
+            update_cache: no	
         - name: Update apt-cache
           apt:
             update_cache: yes
@@ -56,7 +56,6 @@
             - zsh
             - neofetch
             - build-essential
-            - python-pip
             - tmux
             - vim
             - python-pygments
@@ -75,7 +74,7 @@
 
         - name: Download & extract Go
           unarchive:
-            src: https://storage.googleapis.com/golang/go1.12.13.linux-amd64.tar.gz
+            src: https://storage.googleapis.com/golang/go1.13.10.linux-amd64.tar.gz
             dest: /usr/local
             remote_src: yes
             creates: /usr/local/go/bin/go
@@ -88,7 +87,7 @@
                 state: directory
             - name: Download and extract kubectl
               unarchive:
-                src: https://dl.k8s.io/v1.14.9/kubernetes-client-linux-amd64.tar.gz
+                src: https://dl.k8s.io/v1.18.2/kubernetes-client-linux-amd64.tar.gz
                 dest: /usr/local/src/kubectl
                 remote_src: yes
                 creates: /usr/local/src/kubectl/kubernetes/client/bin/kubectl
@@ -108,28 +107,26 @@
                 state: directory
             - name: Download and extract kubectx
               unarchive:
-                src: https://github.com/ahmetb/kubectx/archive/v0.7.1.tar.gz
+                src: https://github.com/ahmetb/kubectx/releases/download/v0.9.0/kubectx_v0.9.0_linux_x86_64.tar.gz
                 dest: /usr/local/src/kubectx
                 remote_src: yes
-                extra_opts: ['--strip-components=1']
+                creates: /usr/local/src/kubectx/kubectx
+            - name: Download and extract kubectx
+              unarchive:
+                src: https://github.com/ahmetb/kubectx/releases/download/v0.9.0/kubens_v0.9.0_linux_x86_64.tar.gz
+                dest: /usr/local/src/kubectx
+                remote_src: yes
+                creates: /usr/local/src/kubectx/kubens
             - name: Copy tools to /usr/local/bin
-              file:
-                state: link
+              copy:
                 src: '/usr/local/src/kubectx/{{item}}'
                 dest: '/usr/local/bin/{{item}}'
                 remote_src: yes
                 mode: 0755
+                force: no
               with_items:
                 - kubectx
                 - kubens
-            - name: Link completion scripts
-              file:
-                state: link
-                src: '/usr/local/src/kubectx/completion/{{item.src}}'
-                dest: '/usr/share/zsh/functions/Completion/{{item.dest}}'
-              with_items:
-                - { src: 'kubectx.zsh', dest: '_kubectx' }
-                - { src: 'kubens.zsh', dest: '_kubens' }
 
         - name: Install Helm
           block:
@@ -139,7 +136,7 @@
                 state: directory
             - name: Download and extract Helm
               unarchive:
-                src: https://get.helm.sh/helm-v3.0.0-linux-amd64.tar.gz
+                src: https://get.helm.sh/helm-v3.2.0-linux-amd64.tar.gz
                 dest: /usr/local/src/helm
                 remote_src: yes
                 creates: /usr/local/src/helm/linux-amd64/helm
@@ -147,6 +144,45 @@
               copy:
                 src: /usr/local/src/helm/linux-amd64/helm
                 dest: /usr/local/bin/helm
+                remote_src: yes
+                force: no
+                mode: 0755
+                
+        - name: Install kind
+          block:
+            - name: Create staging directory for kind
+              file:
+                path: /usr/local/src/kind
+                state: directory
+            - name: Download and extract kind
+              get_url:
+                url: https://kind.sigs.k8s.io/dl/v0.8.1/kind-linux-amd64
+                dest: /usr/local/src/kind
+                remote_src: yes
+            - name: Copy kind to /usr/local/bin
+              copy:
+                src: /usr/local/src/kind/kind-linux-amd64
+                dest: /usr/local/bin/kind
+                remote_src: yes
+                force: no
+                mode: 0755
+                
+        - name: Install kustomize
+          block:
+            - name: Create staging directory for kustomize
+              file:
+                path: /usr/local/src/kustomize
+                state: directory
+            - name: Download and extract kustomize
+              unarchive:
+                src: https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v3.5.4/kustomize_v3.5.4_linux_amd64.tar.gz
+                dest: /usr/local/src/kustomize
+                remote_src: yes
+                creates: /usr/local/src/kustomize/kustomize
+            - name: Copy kustomize to /usr/local/bin
+              copy:
+                src: /usr/local/src/kustomize/kustomize
+                dest: /usr/local/bin/kustomize
                 remote_src: yes
                 force: no
                 mode: 0755

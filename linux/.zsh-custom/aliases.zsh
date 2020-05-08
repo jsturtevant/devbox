@@ -1,7 +1,7 @@
 # Aliases
 alias ccat="pygmentize -g"
 alias devbox-update="ansible-playbook ~/.devbox/linux/devenv-playbook.yml"
-alias devbox-update-dev="ansible-playbook -e devbox_dev=true ~/.devbox/linux/devenv-playbook.yml"
+alias devbox-update-dev="sudo ansible-playbook -e devbox_dev=true ~/.devbox/linux/devenv-playbook.yml" 
 alias edev="vi ~/.devbox/linux/devenv-playbook.yml"
 alias k="kubectl"
 alias etmux="vim ~/.tmux.conf"

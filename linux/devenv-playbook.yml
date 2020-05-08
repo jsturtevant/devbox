@@ -4,7 +4,8 @@
   connection: local
   tasks:
     - name: Administrative setup actions
-      become: true
+      become: yes
+      become_user: root
       block: 
         - name: Add Azure CLI key
           apt_key:
@@ -64,6 +65,7 @@
             - unzip
             - fonts-powerline
             - docker.io
+            - fzf
 
         - name: Upgrade all packages
           apt:
@@ -220,11 +222,15 @@
             append: yes
 
     - name: Cloning oh-my-zsh
+      become: yes
+      become_user: jstur
       git:
         repo: https://github.com/robbyrussell/oh-my-zsh
         dest: ~/.oh-my-zsh
 
     - name: Set up devbox repo
+      become: yes
+      become_user: jstur
       block:
         - name: Clone jsturtevant/devbox
           when: devbox_dev is undefined
@@ -241,6 +247,8 @@
             chdir: ~/.devbox
 
     - name: Tmux setup
+      become: yes
+      become_user: jstur
       block:
         - name: Create ~/.tmux/plugins
           file:
@@ -252,6 +260,8 @@
             dest: ~/.tmux/plugins/tpm
 
     - name: Vim setup
+      become: yes
+      become_user: jstur
       block:
         - name: Create ~/.vim/autoload
           file:
@@ -266,6 +276,8 @@
           #changed_when: false
 
     - name: Link dotfiles
+      become: yes
+      become_user: jstur
       file:
         state: link
         src: '~/.devbox/dotfiles/{{item}}'
@@ -274,6 +286,8 @@
         - .gitconfig
           
     - name: Link kubie config
+      become: yes
+      become_user: jstur
       file:
         state: link
         src: '~/.devbox/dotfiles/{{item}}'
@@ -283,6 +297,8 @@
 
 
     - name: Link Linux-specific dotfiles
+      become: yes
+      become_user: jstur
       file:
         state: link
         src: '~/.devbox/linux/{{item}}'
@@ -295,6 +311,8 @@
         - .zshrc
 
     - name: Update ownership of home folder
+      become: yes
+      become_user: jstur
       file:
         dest: ~/
         state: directory

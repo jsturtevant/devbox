@@ -66,6 +66,7 @@
             - fonts-powerline
             - docker.io
             - fzf
+            - silversearcher-ag
 
         - name: Upgrade all packages
           apt:

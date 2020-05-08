@@ -6,7 +6,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-vinegar'
-Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'christoomey/vim-tmux-navigator'
@@ -57,8 +56,7 @@ inoremap (<CR> (<CR>)<Esc>ko
 autocmd VimResized * :wincmd =
 
 " --- altercation/vim-colors/solarized ---
-colorscheme solarized   " use solarized color scheme
-set background=dark     " use solarized dark
+colorscheme murphy   " use color scheme
 
 " --- vim-airline/vim-airline ---
 set laststatus=2        " always show statusbar

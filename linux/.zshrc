@@ -104,3 +104,5 @@ eval `dircolors ~/.dircolors`
 source <(kubectl completion zsh)
 source /opt/az/bin/az.completion.sh &>/dev/null
 source /usr/local/src/kubie/kubie.bash
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh

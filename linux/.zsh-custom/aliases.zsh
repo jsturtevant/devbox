@@ -7,10 +7,12 @@ alias k="kubectl"
 alias etmux="vim ~/.tmux.conf"
 alias evim="vim ~/.vimrc"
 alias ezsh="vim ~/.zshrc"
+alias gitshit="git reset --soft HEAD~1"
 
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias ff='find * -type f | fzf'
 
 # SSH agent with default key
 function ssa() {

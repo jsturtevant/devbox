@@ -67,6 +67,8 @@
             - docker.io
             - fzf
             - silversearcher-ag
+            - net-tools
+            - meld
 
         - name: Upgrade all packages
           apt:

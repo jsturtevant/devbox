@@ -51,8 +51,7 @@
 
         - name: Install packages
           apt:
-            name: '{{item}}'
-          with_items:
+            pkg: 
             - apt-transport-https
             - ca-certificates
             - curl
@@ -79,6 +78,7 @@
             - docker-ce 
             - docker-ce-cli 
             - containerd.io
+            state: latest
 
         - name: Upgrade all packages
           apt:

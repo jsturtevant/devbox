@@ -52,34 +52,34 @@
         - name: Install packages
           apt:
             pkg: 
-            - apt-transport-https
-            - ca-certificates
-            - curl
-            - software-properties-common
-            - gnupg-agent
-            - jq
-            - azure-cli
-            - nodejs
-            - git
-            - zsh
-            - neofetch
-            - build-essential
-            - tmux
-            - vim
-            - python-pygments
-            - cmake
-            - zip
-            - unzip
-            - fonts-powerline
-            - fzf
-            - silversearcher-ag
-            - net-tools
-            - meld
-            - docker-ce 
-            - docker-ce-cli 
-            - containerd.io
+              - apt-transport-https
+              - ca-certificates
+              - curl
+              - software-properties-common
+              - gnupg-agent
+              - jq
+              - azure-cli
+              - nodejs
+              - git
+              - zsh
+              - neofetch
+              - build-essential
+              - tmux
+              - vim
+              - python-pygments
+              - cmake
+              - zip
+              - unzip
+              - fonts-powerline
+              - fzf
+              - silversearcher-ag
+              - net-tools
+              - meld
+              - docker-ce 
+              - docker-ce-cli 
+              - containerd.io
             state: latest
-
+            
         - name: Upgrade all packages
           apt:
             upgrade: yes
@@ -103,16 +103,15 @@
                 state: directory
             - name: Download and extract kubectl
               unarchive:
-                src: https://dl.k8s.io/v1.18.2/kubernetes-client-linux-amd64.tar.gz
+                src: https://dl.k8s.io/v1.18.5/kubernetes-client-linux-amd64.tar.gz
                 dest: /usr/local/src/kubectl
                 remote_src: yes
-                creates: /usr/local/src/kubectl/kubernetes/client/bin/kubectl
             - name: Copy kubectl to /usr/local/bin
               copy:
                 src: /usr/local/src/kubectl/kubernetes/client/bin/kubectl
                 dest: /usr/local/bin/kubectl
                 remote_src: yes
-                force: no
+                force: yes
                 mode: 0755
         
         - name: Install kubectx
@@ -126,20 +125,18 @@
                 src: https://github.com/ahmetb/kubectx/releases/download/v0.9.1/kubectx_v0.9.1_linux_x86_64.tar.gz
                 dest: /usr/local/src/kubectx
                 remote_src: yes
-                creates: /usr/local/src/kubectx/kubectx
             - name: Download and extract kubectx
               unarchive:
                 src: https://github.com/ahmetb/kubectx/releases/download/v0.9.1/kubens_v0.9.1_linux_x86_64.tar.gz
                 dest: /usr/local/src/kubectx
                 remote_src: yes
-                creates: /usr/local/src/kubectx/kubens
             - name: Copy tools to /usr/local/bin
               copy:
                 src: '/usr/local/src/kubectx/{{item}}'
                 dest: '/usr/local/bin/{{item}}'
                 remote_src: yes
                 mode: 0755
-                force: no
+                force: yes
               with_items:
                 - kubectx
                 - kubens
@@ -155,13 +152,12 @@
                 src: https://get.helm.sh/helm-v3.2.4-linux-amd64.tar.gz
                 dest: /usr/local/src/helm
                 remote_src: yes
-                creates: /usr/local/src/helm/linux-amd64/helm
             - name: Copy Helm to /usr/local/bin
               copy:
                 src: /usr/local/src/helm/linux-amd64/helm
                 dest: /usr/local/bin/helm
                 remote_src: yes
-                force: no
+                force: yes
                 mode: 0755
                 
         - name: Install kind
@@ -180,7 +176,7 @@
                 src: /usr/local/src/kind/kind-linux-amd64
                 dest: /usr/local/bin/kind
                 remote_src: yes
-                force: no
+                force: yes
                 mode: 0755
 
         - name: Install kubie
@@ -199,7 +195,7 @@
                 src: /usr/local/src/kubie/kubie-linux-amd64
                 dest: /usr/local/bin/kubie
                 remote_src: yes
-                force: no
+                force: yes
                 mode: 0755
             - name: Download and extract kubie
               get_url:
@@ -218,13 +214,12 @@
                 src: https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v3.6.1/kustomize_v3.6.1_linux_amd64.tar.gz
                 dest: /usr/local/src/kustomize
                 remote_src: yes
-                creates: /usr/local/src/kustomize/kustomize
             - name: Copy kustomize to /usr/local/bin
               copy:
                 src: /usr/local/src/kustomize/kustomize
                 dest: /usr/local/bin/kustomize
                 remote_src: yes
-                force: no
+                force: yes
                 mode: 0755
 
         #if fails to set defualt shell run 'chsh -s $(which zsh)'

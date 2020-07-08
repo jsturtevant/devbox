@@ -10,10 +10,10 @@
         - name: Add Azure CLI key
           apt_key:
             url: https://packages.microsoft.com/keys/microsoft.asc
-            #   - name: Add Azure CLI to sources list
-            #     apt_repository:
-            #       repo: deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_facts['lsb']['codename'] }} main
-            #       update_cache: no
+        - name: Add Azure CLI to sources list
+          apt_repository:
+            repo: deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ {{ ansible_facts['lsb']['codename'] }} main
+            update_cache: no
         - name: add .netcore key
           apt_key:
             url: https://packages.microsoft.com/keys/microsoft.asc
@@ -51,7 +51,7 @@
             - curl
             - software-properties-common
             - jq
-              #- azure-cli
+            - azure-cli
             - nodejs
             - git
             - zsh

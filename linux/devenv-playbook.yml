@@ -33,6 +33,13 @@
           with_items:
             - deb https://deb.nodesource.com/node_12.x {{ ansible_facts['lsb']['codename'] }} main
             - deb-src https://deb.nodesource.com/node_12.x {{ ansible_facts['lsb']['codename'] }} main
+        - name: Add docker key
+          apt_key:
+            url: https://download.docker.com/linux/ubuntu/gpg
+        - name: Add docker to sources list
+          apt_repository:
+            repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_facts['lsb']['codename'] }} stable
+            update_cache: no
         - name: Add neofetch repository
           apt_repository:
             repo: ppa:dawidd0811/neofetch
@@ -50,6 +57,7 @@
             - ca-certificates
             - curl
             - software-properties-common
+            - gnupg-agent
             - jq
             - azure-cli
             - nodejs
@@ -64,11 +72,13 @@
             - zip
             - unzip
             - fonts-powerline
-            - docker.io
             - fzf
             - silversearcher-ag
             - net-tools
             - meld
+            - docker-ce 
+            - docker-ce-cli 
+            - containerd.io
 
         - name: Upgrade all packages
           apt:

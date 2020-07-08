@@ -1,11 +1,30 @@
-# These customizations are only added when running on Azure
-# On Azure, the option "unknown-245" gets set by Azure DHCP
+function rgclean() {
+    prefixesToDelete=("test" "kubetest")
 
-if grep -sq unknown-245 /var/lib/dhcp/dhclient.eth0.leases; then
+    groupsToDelete=()
+    for prefix in ${prefixesToDelete[@]}; do  
+        groupsToDelete+=($(az group list -o json --query "[?starts_with(name, '$prefix') && tags.keep!='true'].name" -o tsv))
+    done
 
-  # Aliases
-  function azmeta() {
-    curl -s -H 'Metadata: true' 'http://169.254.169.254/metadata/instance?api-version=2017-04-02' | jq
-  }
+    echo $groupsToDelete
+    echo -n "Delete the previous resource groups [y/n]:"
+    read ans
+    if [[ $ans != "y" ]]; then
+        return
+    fi
 
-fi
+    for group in ${groupsToDelete[@]}; do  
+        echo "Deleting $group"
+        az group delete --name $group --yes --no-wait
+    done 
+}
+
+function rgkeep() {
+    local rgname=$1
+    az group update --name $rgname --tags keep=true
+}
+
+function rgrm() {
+    local rgname=$1
+    az group update --name $rgname --remove tags.keep
+}

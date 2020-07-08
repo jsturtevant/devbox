@@ -80,7 +80,7 @@
 
         - name: Download & extract Go
           unarchive:
-            src: https://storage.googleapis.com/golang/go1.13.10.linux-amd64.tar.gz
+            src: https://storage.googleapis.com/golang/go1.14.4.linux-amd64.tar.gz
             dest: /usr/local
             remote_src: yes
             creates: /usr/local/go/bin/go
@@ -113,13 +113,13 @@
                 state: directory
             - name: Download and extract kubectx
               unarchive:
-                src: https://github.com/ahmetb/kubectx/releases/download/v0.9.0/kubectx_v0.9.0_linux_x86_64.tar.gz
+                src: https://github.com/ahmetb/kubectx/releases/download/v0.9.1/kubectx_v0.9.1_linux_x86_64.tar.gz
                 dest: /usr/local/src/kubectx
                 remote_src: yes
                 creates: /usr/local/src/kubectx/kubectx
             - name: Download and extract kubectx
               unarchive:
-                src: https://github.com/ahmetb/kubectx/releases/download/v0.9.0/kubens_v0.9.0_linux_x86_64.tar.gz
+                src: https://github.com/ahmetb/kubectx/releases/download/v0.9.1/kubens_v0.9.1_linux_x86_64.tar.gz
                 dest: /usr/local/src/kubectx
                 remote_src: yes
                 creates: /usr/local/src/kubectx/kubens
@@ -142,7 +142,7 @@
                 state: directory
             - name: Download and extract Helm
               unarchive:
-                src: https://get.helm.sh/helm-v3.2.0-linux-amd64.tar.gz
+                src: https://get.helm.sh/helm-v3.2.4-linux-amd64.tar.gz
                 dest: /usr/local/src/helm
                 remote_src: yes
                 creates: /usr/local/src/helm/linux-amd64/helm
@@ -181,7 +181,7 @@
                 state: directory
             - name: Download and extract kubie
               get_url:
-                url: https://github.com/sbstp/kubie/releases/download/v0.9.0/kubie-linux-amd64
+                url: https://github.com/sbstp/kubie/releases/download/v0.9.1/kubie-linux-amd64
                 dest: /usr/local/src/kubie
                 remote_src: yes
             - name: Copy kind to /usr/local/bin
@@ -205,7 +205,7 @@
                 state: directory
             - name: Download and extract kustomize
               unarchive:
-                src: https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v3.5.4/kustomize_v3.5.4_linux_amd64.tar.gz
+                src: https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v3.6.1/kustomize_v3.6.1_linux_amd64.tar.gz
                 dest: /usr/local/src/kustomize
                 remote_src: yes
                 creates: /usr/local/src/kustomize/kustomize

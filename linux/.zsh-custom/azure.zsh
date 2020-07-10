@@ -1,6 +1,6 @@
-function rgclean() {
-    prefixesToDelete=("test" "kubetest")
+prefixesToDelete=("test" "kubetest")
 
+function rgclean() {
     groupsToDelete=()
     for prefix in ${prefixesToDelete[@]}; do  
         groupsToDelete+=($(az group list -o json --query "[?starts_with(name, '$prefix') && tags.keep!='true'].name" -o tsv))
@@ -17,6 +17,15 @@ function rgclean() {
         echo "Deleting $group"
         az group delete --name $group --yes --no-wait
     done 
+}
+
+function rglist(){
+    groupsEligibleForDeletion=()
+    for prefix in ${prefixesToDelete[@]}; do  
+        groupsEligibleForDeletion+=($(az group list -o json --query "[?starts_with(name, '$prefix')].name" -o tsv))
+    done
+
+    echo $groupsEligibleForDeletion
 }
 
 function rgkeep() {

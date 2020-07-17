@@ -282,6 +282,19 @@
           #- name: Install vim plugins
           #command: vim +PlugInstall +qall
           #changed_when: false
+      
+    - name: zsh autosuggestions
+      become: yes
+      become_user: jstur
+      block:
+        - name: Create ~/.zsh-custom/plugins
+          file:
+            path: ~/.zsh-custom/plugins
+            state: directory
+        - name: Clone zsh autosuggestions 
+          git:
+            repo: https://github.com/zsh-users/zsh-autosuggestions
+            dest: ~/.zsh-custom/plugins/zsh-autosuggestions
 
     - name: Link dotfiles
       become: yes

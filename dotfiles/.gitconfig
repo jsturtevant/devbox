@@ -8,6 +8,6 @@
   	tree = log --all --decorate --oneline --graph
 [user]
 	name = James Sturtevant
-	email = jsturtevant@gmail.com
+	email = jstur@microsoft.com
 [push]
 	default = simple

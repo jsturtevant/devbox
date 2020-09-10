@@ -1,4 +1,4 @@
-prefixesToDelete=("test" "kubetest")
+prefixesToDelete=("test" "kubetest" "capz-e2e")
 
 function rgclean() {
     groupsToDelete=()
@@ -38,11 +38,3 @@ function rgrm() {
     az group update --name $rgname --remove tags.keep
 }
 
-funciton wssh() {
-    local publicip=${1}
-    local windowsip=${2}
-    local keyfile=${3:-"~/.ssh/id_rsa"}
-    local sshuser=${4:-"azureuser"}
-
-    ssh -t -i "$keyfile" -o "ProxyCommand ssh -i $keyfile -W %h:%p $sshuser@$publicip" "$sshuser@$windowsip" 
-}

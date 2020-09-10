@@ -43,11 +43,18 @@
         - name: Add neofetch repository
           apt_repository:
             repo: ppa:dawidd0811/neofetch
-            update_cache: no	
+            update_cache: no
         - name: Update apt-cache
           apt:
             update_cache: yes
             cache_valid_time: 3600
+        - name: Add hashicorp key
+          apt_key:
+            url: https://apt.releases.hashicorp.com/gpg 
+        - name: Add hashicorp repo
+          apt_repository:
+            repo: deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_facts['lsb']['codename'] }} main
+            update_cache: no
 
         - name: Install packages
           apt:
@@ -78,6 +85,7 @@
               - docker-ce 
               - docker-ce-cli 
               - containerd.io
+              - packer
             state: latest
             
         - name: Upgrade all packages

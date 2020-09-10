@@ -21,8 +21,6 @@ function gclone() {
 }
 
 function gupdate() {
-    local repo=$1
-
     branch=$(git symbolic-ref --short HEAD)
     echo -n "Will rebase branch: '$branch' Proceed? [y/n]: "
     read ans
@@ -36,4 +34,20 @@ function gupdate() {
     echo "rebase upstream master to '$branch'"
     git rebase upstream/master
     git status
+}
+
+function gpush() {
+    branch=$(git symbolic-ref --short HEAD)
+
+    echo "your remotes are:"
+    git remote -v 
+    echo -n "Will push branch: '$branch' to 'origin' Proceed? [y/n]: "
+    read ans
+
+    if [[ $ans != "y" ]]; then
+        return
+    fi
+
+    echo "pushing to upstream remote origin"
+    git push --set-upstream origin $branch
 }

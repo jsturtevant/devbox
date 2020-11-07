@@ -111,7 +111,7 @@
                 state: directory
             - name: Download and extract kubectl
               unarchive:
-                src: https://dl.k8s.io/v1.18.5/kubernetes-client-linux-amd64.tar.gz
+                src: https://dl.k8s.io/v1.19.3/kubernetes-client-linux-amd64.tar.gz
                 dest: /usr/local/src/kubectl
                 remote_src: yes
             - name: Copy kubectl to /usr/local/bin
@@ -176,9 +176,8 @@
                 state: directory
             - name: Download and extract kind
               get_url:
-                url: https://kind.sigs.k8s.io/dl/v0.8.1/kind-linux-amd64
+                url: https://kind.sigs.k8s.io/dl/v0.9.0/kind-linux-amd64
                 dest: /usr/local/src/kind
-                remote_src: yes
             - name: Copy kind to /usr/local/bin
               copy:
                 src: /usr/local/src/kind/kind-linux-amd64
@@ -197,7 +196,6 @@
               get_url:
                 url: https://github.com/sbstp/kubie/releases/download/v0.9.1/kubie-linux-amd64
                 dest: /usr/local/src/kubie
-                remote_src: yes
             - name: Copy kind to /usr/local/bin
               copy:
                 src: /usr/local/src/kubie/kubie-linux-amd64
@@ -209,7 +207,6 @@
               get_url:
                 url: https://raw.githubusercontent.com/sbstp/kubie/master/completion/kubie.bash 
                 dest: /usr/local/src/kubie
-                remote_src: yes
                 
         - name: Install kustomize
           block:
@@ -219,7 +216,7 @@
                 state: directory
             - name: Download and extract kustomize
               unarchive:
-                src: https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v3.6.1/kustomize_v3.6.1_linux_amd64.tar.gz
+                src: https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize/v3.8.6/kustomize_v3.8.6_linux_amd64.tar.gz
                 dest: /usr/local/src/kustomize
                 remote_src: yes
             - name: Copy kustomize to /usr/local/bin

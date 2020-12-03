@@ -99,7 +99,7 @@
 
         - name: Download & extract Go
           unarchive:
-            src: https://storage.googleapis.com/golang/go1.14.4.linux-amd64.tar.gz
+            src: https://storage.googleapis.com/golang/go1.15.4.linux-amd64.tar.gz
             dest: /usr/local
             remote_src: yes
             creates: /usr/local/go/bin/go

@@ -15,7 +15,7 @@ alias l='ls -CF'
 alias ff='find * -type f | fzf'
 
 alias gitshit="git reset --soft HEAD~1"
-alias unzip="tar xf $1"
+alias tunzip="tar xf $1"
 alias openfolder='gio open .'
 
 # SSH agent with default key
@@ -24,6 +24,8 @@ function ssa() {
   ssh-add ~/.ssh/id_rsa
   ssh-add ~/.ssh/idgithub_rsa
 }
+
+alias ssh-pub="cat ~/.ssh/id_rsa.pub | xclip -sel clip -i"
 
 # check given vs calculated
 # example: checksum 69274fd3b9e65b39e33070376400b7e31664388cdee012591fabc849bee4258e kubernetes.tar.gz 

@@ -5,6 +5,7 @@ alias kdp="kubectl describe pod"
 alias krmp="kubectl delete pod"
 alias kd="kubectl describe"
 alias kg="kubectl get"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 funciton wssh() {
     local publicip=${1}
